@@ -1,0 +1,11 @@
+{
+  "base": "/",
+  "outDir": "dist",
+  "assetsDir": "assets",
+  "profileBuild": "app",
+  "modes": {
+    "app": {
+      "input": ["./src/main.ts"]
+    }
+  }
+}

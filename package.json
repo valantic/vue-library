@@ -1,0 +1,139 @@
+{
+  "name": "@valantic/vue-library",
+  "version": "0.0.1",
+  "description": "A bunch of useful vue components and plugins.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./types": {
+      "types": "./src/types/index.d.ts",
+      "import": "./src/types/index.d.ts"
+    },
+    "./types/*": {
+      "types": "./src/types/*.d.ts",
+      "import": "./src/types/*.d.ts"
+    },
+    "./elements": "./src/elements/index.ts",
+    "./elements/*": "./src/elements/*/index.ts",
+    "./components": "./src/components/index.ts",
+    "./components/*": "./src/components/*/index.ts",
+    "./layouts": "./src/layouts/index.ts",
+    "./layouts/*": "./src/layouts/*/index.ts",
+    "./src/*.vue": "./src/*.vue",
+    "./src/*": {
+      "types": "./src/*.ts",
+      "import": "./src/*.ts"
+    },
+    "./src/*.ts": {
+      "types": "./src/*.ts",
+      "import": "./src/*.ts"
+    }
+  },
+  "lastDependencyUpdate": "10.03.2026",
+  "scripts": {
+    "release": "npm version patch -m 'Release %s' && git push --follow-tags",
+    "release:minor": "npm version minor -m 'Release %s' && git push --follow-tags",
+    "release:major": "npm version major -m 'Release %s' && git push --follow-tags",
+    "clean:caches": "rm -rf .eslintcache .stylelintcache node_modules/.cache",
+    "dev": "vite",
+    "fix:stylelint": "npm run lint:stylelint -- --cache=false --config .stylelintrc.fix.js --fix",
+    "lint": "npm run lint:eslint && npm run lint:stylelint && npm run tsc",
+    "lint:eslint": "eslint --ext .ts,.js,.vue ./",
+    "lint:stylelint": "stylelint 'src/**/*.?(vue|scss)'",
+    "lint-staged": "lint-staged",
+    "test": "npm run lint && npm run test:unit -- --watch=false",
+    "test:unit": "vitest --dir tests",
+    "build": "vite build --mode=app",
+    "build:icons": "svg-sprite --config .svg-sprite.json src/assets/icons/*.svg; node ./update-ts-icon-type",
+    "build:watch": "npm run build -- --watch",
+    "serve": "vite preview",
+    "prepare": "husky",
+    "prettier": "prettier . --write",
+    "tsc": "vue-tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valantic/vue-library.git",
+    "tree": "https://github.com/valantic/vue-library/tree/v"
+  },
+  "engines": {
+    "node": ">=22 <25",
+    "npm": ">=10 <12"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "valantic"
+  ],
+  "author": "valantic CEC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valantic/vue-library/issues"
+  },
+  "homepage": "https://github.com/valantic/vue-library",
+  "dependencies": {
+    "vue": "~3.5.28"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "~3.3.4",
+    "@eslint/js": "~9.39.4",
+    "@faker-js/faker": "~10.3.0",
+    "@trivago/prettier-plugin-sort-imports": "~5.2.2",
+    "@types/node": "~24.11.2",
+    "@valantic/vue-styleguide": "github:valantic/vue-styleguide#enhancement/npm-updates",
+    "@vitejs/plugin-vue": "~6.0.4",
+    "@vue/test-utils": "~2.4.6",
+    "autoprefixer": "~10.4.27",
+    "cssnano": "~7.1.2",
+    "eslint": "~9.39.4",
+    "eslint-config-prettier": "~10.1.8",
+    "eslint-config-valantic": "~18.0.0",
+    "eslint-plugin-import": "~2.32.0",
+    "eslint-plugin-jsdoc": "~62.5.5",
+    "eslint-plugin-unicorn": "~62.0.0",
+    "eslint-plugin-vue": "~10.7.0",
+    "globals": "~17.4.0",
+    "husky": "~9.1.7",
+    "jsdom": "~28.0.0",
+    "lint-staged": "~16.2.7",
+    "postcss": "~8.5.6",
+    "postcss-html": "~1.8.1",
+    "postcss-scss": "~4.0.9",
+    "prettier": "~3.8.1",
+    "sass": "~1.94.3",
+    "stylelint": "~17.4.0",
+    "stylelint-config-valantic": "~10.1.0",
+    "svg-sprite": "~2.0.4",
+    "svgo": "~4.0.0",
+    "the-new-css-reset": "~1.11.3",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "~8.56.1",
+    "vite": "~7.3.1",
+    "vite-plugin-image-optimizer": "~2.0.2",
+    "vite-plugin-markdown": "~2.2.0",
+    "vitest": "~4.0.18",
+    "vue-component-type-helpers": "~3.2.5",
+    "vue-eslint-parser": "~10.2.0",
+    "vue-router": "~4.6.4",
+    "vue-tsc": "~3.2.5"
+  },
+  "browserslist": [
+    "> 2%",
+    "last 2 years",
+    "not ie_mob > 0",
+    "not ie > 0",
+    "not dead"
+  ],
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "files": [
+    "src"
+  ]
+}

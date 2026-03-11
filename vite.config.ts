@@ -1,0 +1,126 @@
+/* eslint-disable no-case-declarations */
+// Vitest instead of Vite was used because of the extended Interface.
+import vue from '@vitejs/plugin-vue';
+import path from 'node:path';
+import { defineConfig } from 'vite';
+import { Mode, plugin as mdPlugin } from 'vite-plugin-markdown';
+import { ViteUserConfigExport } from 'vitest/config';
+import viteBuilds from './vite.builds.json';
+
+
+interface Modes {
+  [key: string]: {
+    input: string[];
+  };
+}
+
+interface ViteBuilds {
+  base: string;
+  outDir: string;
+  assetsDir: string;
+  profileBuild: string;
+  modes: Modes;
+}
+
+export const alias = {
+  '@': path.resolve(import.meta.dirname, 'src/'),
+  'vue': 'vue/dist/vue.esm-bundler.js', // Was required because inline import of vue.esm-bundler.js resulted in TS issues.
+};
+
+/**
+ * Notes:
+ * - Style-only components are imported by src/setup/components.ts.
+ */
+export default defineConfig(({ command, mode }) => {
+  const config: ViteUserConfigExport = {
+    plugins: [
+      vue(),
+      mdPlugin({
+        mode: [Mode.VUE],
+      }),
+    ],
+    resolve: {
+      alias,
+    },
+    json: {
+      stringify: true,
+    },
+    test: {
+      environment: 'jsdom',
+    },
+    css: {
+      devSourcemap: true,
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations: ['legacy-js-api'],
+        },
+      },
+    },
+  };
+
+  switch (command) {
+    case 'build': // @see https://vitejs.dev/config/build-options.html
+      const isProfileBuild = mode === 'profile';
+      const { base, outDir, assetsDir, modes, profileBuild } = (viteBuilds as ViteBuilds) || {};
+
+      if (!isProfileBuild && !modes[mode]) {
+        throw new Error(`Given mode '${mode}' is unknown.`);
+      }
+
+      const { input } = modes[isProfileBuild ? profileBuild : mode] || {};
+
+      config.base = base;
+      config.build = {
+        outDir: `${outDir}/${mode}`,
+        assetsInlineLimit: 0, // TODO: check if it makes sense to increase this value.
+        manifest: true,
+        emptyOutDir: true,
+        sourcemap: true,
+        copyPublicDir: true,
+
+        // TODO: watch?
+        rollupOptions: {
+          external: [
+            /!dev/, // Removes styleguide/dev only assets.
+          ],
+          input,
+          output: {
+            entryFileNames: 'index.[hash].js',
+            chunkFileNames(chunkInfo): string {
+              const jsPath = `${assetsDir}/js`;
+
+              if (!chunkInfo.facadeModuleId) {
+                return `${jsPath}/shared.${chunkInfo.moduleIds.length}-[hash].js`;
+              }
+
+              return `${jsPath}/[name].[hash].js`;
+            },
+            assetFileNames(assetInfo): string {
+              const fileName = assetInfo?.name || '';
+              const imageExtensions = /\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/i;
+              const styleExtensions = /\.(css|sass|scss)$/i;
+              const fontExtensions = /\.(woff|woff2|eot|ttf|otf)$/i;
+              const scriptExtensions = /\.(vue|js|ts)$/i;
+              let assetsPath = assetsDir;
+
+              if (imageExtensions.test(fileName)) {
+                assetsPath += '/img';
+              } else if (styleExtensions.test(fileName)) {
+                assetsPath += '/css';
+              } else if (fontExtensions.test(fileName)) {
+                assetsPath += '/fonts';
+              } else if (scriptExtensions.test(fileName)) {
+                assetsPath = '';
+              }
+
+              return `${assetsPath}/[name].[hash].[ext]`;
+            },
+            // manualChunks() {}, // Defining manual chunks is supper tricky, since the context of the single imports is hard to evaluate (if even possible). I eventually decided not to use this method.
+          },
+        },
+      };
+    // no default
+  }
+
+  return config;
+});
