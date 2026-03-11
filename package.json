@@ -19,7 +19,10 @@
       "types": "./src/types/*.d.ts",
       "import": "./src/types/*.d.ts"
     },
-    "./compositions/*": "./src/compositions/*.ts",
+    "./compositions/*": {
+      "types": "./src/compositions/*.ts",
+      "import": "./src/compositions/*.ts"
+    },
     "./src/*.vue": "./src/*.vue",
     "./src/*": {
       "types": "./src/*.ts",
