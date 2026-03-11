@@ -19,12 +19,7 @@
       "types": "./src/types/*.d.ts",
       "import": "./src/types/*.d.ts"
     },
-    "./elements": "./src/elements/index.ts",
-    "./elements/*": "./src/elements/*/index.ts",
-    "./components": "./src/components/index.ts",
-    "./components/*": "./src/components/*/index.ts",
-    "./layouts": "./src/layouts/index.ts",
-    "./layouts/*": "./src/layouts/*/index.ts",
+    "./compositions/*": "./src/compositions/*.ts",
     "./src/*.vue": "./src/*.vue",
     "./src/*": {
       "types": "./src/*.ts",
