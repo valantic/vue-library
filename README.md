@@ -1,5 +1,7 @@
 <div align="center">
 
+![valantic vue-library banner](.github/assets/banner.jpeg)
+
 # valantic - vue library
 
 **A set of useful components and utilities.**
@@ -27,7 +29,8 @@ TBD
 
 ## from valantic - with love
 
-Built and maintained by [valantic](https://www.valantic.com/en/careers/) — we're hiring, check out our [open positions](https://www.valantic.com/en/careers/).
+Built and maintained by [valantic](https://www.valantic.com/en/careers/) — we're hiring, check out
+our [open positions](https://www.valantic.com/en/careers/).
 
 ## License
 
