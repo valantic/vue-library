@@ -1,39 +1,15 @@
 {
   "name": "@valantic/vue-library",
-  "version": "0.0.1",
   "description": "A bunch of useful vue components and plugins.",
-  "type": "module",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
-  "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts"
-    },
-    "./types": {
-      "types": "./src/types/index.d.ts",
-      "import": "./src/types/index.d.ts"
-    },
-    "./types/*": {
-      "types": "./src/types/*.d.ts",
-      "import": "./src/types/*.d.ts"
-    },
-    "./compositions/*": {
-      "types": "./src/compositions/*.ts",
-      "import": "./src/compositions/*.ts"
-    },
-    "./src/*.vue": "./src/*.vue",
-    "./src/*": {
-      "types": "./src/*.ts",
-      "import": "./src/*.ts"
-    },
-    "./src/*.ts": {
-      "types": "./src/*.ts",
-      "import": "./src/*.ts"
-    }
-  },
+  "author": "valantic CEC",
+  "license": "MIT",
+  "version": "0.0.1",
   "lastDependencyUpdate": "10.03.2026",
+  "type": "module",
+  "engines": {
+    "node": ">=22 <26",
+    "npm": ">=10 <12"
+  },
   "scripts": {
     "release": "npm version patch -m 'Release %s' && git push --follow-tags",
     "release:minor": "npm version minor -m 'Release %s' && git push --follow-tags",
@@ -55,26 +31,6 @@
     "prettier": "prettier . --write",
     "tsc": "vue-tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/valantic/vue-library.git",
-    "tree": "https://github.com/valantic/vue-library/tree/v"
-  },
-  "engines": {
-    "node": ">=22 <25",
-    "npm": ">=10 <12"
-  },
-  "keywords": [
-    "vue",
-    "vuejs",
-    "valantic"
-  ],
-  "author": "valantic CEC",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/valantic/vue-library/issues"
-  },
-  "homepage": "https://github.com/valantic/vue-library",
   "dependencies": {
     "vue": "~3.5.28"
   },
@@ -133,5 +89,49 @@
   },
   "files": [
     "src"
-  ]
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./types": {
+      "types": "./src/types/index.d.ts",
+      "import": "./src/types/index.d.ts"
+    },
+    "./types/*": {
+      "types": "./src/types/*.d.ts",
+      "import": "./src/types/*.d.ts"
+    },
+    "./compositions/*": {
+      "types": "./src/compositions/*.ts",
+      "import": "./src/compositions/*.ts"
+    },
+    "./src/*.vue": "./src/*.vue",
+    "./src/*": {
+      "types": "./src/*.ts",
+      "import": "./src/*.ts"
+    },
+    "./src/*.ts": {
+      "types": "./src/*.ts",
+      "import": "./src/*.ts"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valantic/vue-library.git",
+    "tree": "https://github.com/valantic/vue-library/tree/v"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "valantic"
+  ],
+  "bugs": {
+    "url": "https://github.com/valantic/vue-library/issues"
+  },
+  "homepage": "https://github.com/valantic/vue-library"
 }
