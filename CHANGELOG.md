@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- [CHORE]: Bumped `engines.node` to `>=22 <26` (was `>=22 <25`) to allow Node 25. Updated `.nvmrc` from `24` to `25`.
+  Added `min-release-age=7` and `ignore-scripts=true` to `.npmrc`.
+
 - [FEATURE]: Project boostrap
 - [CI]: Renamed the CI workflow to "CI Test" and updated it to `actions/checkout@v7`, `actions/setup-node@v7`, and
   Node 25.
