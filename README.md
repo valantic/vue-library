@@ -23,6 +23,10 @@ Include it in the test section of your project:
 
 TBD
 
+## Contributing
+
+How to contribute and how releases are made is described in [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 ---
 
 <div align="center">

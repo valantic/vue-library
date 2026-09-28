@@ -35,7 +35,12 @@ Note: `src/index.ts` (the file `main`/`module`/`types` point to) does not exist 
   adding/removing an icon SVG.
 - `npm run clean:caches` — clears `.eslintcache`, `.stylelintcache`, `node_modules/.cache`.
 
-Releases (`npm run release[:minor|:major]`) bump the version and push tags — do not run these unless explicitly asked.
+`npm run release[:minor|:major]` — runs `scripts/release.mjs` (shared, identical in every shared-frontend repo):
+checks for a clean, up-to-date `main` and a non-empty `## unreleased`, bumps the version, renames
+`## unreleased` to `## vX.Y.Z`, updates the README version pin, commits, creates the annotated `vX.Y.Z` tag and
+pushes. The `Release` workflow (`.github/workflows/release.yml`) then creates the GitHub release from that
+changelog section. See `CONTRIBUTING.md`. **Never run a release script or `npm publish` unless explicitly
+asked.**
 
 ## Architecture
 
