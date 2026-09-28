@@ -75,7 +75,50 @@ asked.**
   (`typescript.js`, `vue.js`, `prettier-vue.js`) from `eslint.config.js`. A few narrow overrides already exist there
   (e.g. `import/extensions: off`, `vue/no-unsupported-features` pinned to `^3.5.0`) — don't add new ad-hoc rule
   overrides without reason.
-- Node `>=22 <25`, npm `>=10 <12` required (see `engines` in `package.json`).
+- Required Node.js/npm versions: see `engines` in `package.json` and `.nvmrc`.
+
+## Code conventions
+
+Follow the repo's ESLint/Stylelint/Prettier config and `.editorconfig`. On top of that:
+
+- Naming: files `kebab-case`; types, interfaces and enums `PascalCase`; functions, properties and variables
+  `camelCase`. Singular names for single things (types, enums, components, stores), plural only for collections. Use
+  whole, descriptive words — identifiers have at least 3 characters (`id-length`), except the ones whitelisted in the
+  ESLint config.
+- TypeScript: never use `any` — use `unknown` plus narrowing or a generic; if `any` is unavoidable, isolate it and
+  comment why. Use `type` for object shapes; `interface` only for features exclusive to it, without an `I` prefix.
+- Control flow: no `while` or plain `for` loops (use array methods, or `for...of` when `await`/`break`/`continue` is
+  needed), no `switch` (use object literals or `if`/`else`), no one-line `if` bodies.
+- Comments only where the code is not self-explanatory, in JSDoc style.
+- Vue: components use the Options API with `defineComponent` and `<script lang="ts">` — never `<script setup>` or the
+  Composition API style. Use method shorthand (not arrow functions) in `methods`/`computed`. Base new files on
+  `blueprints/` and keep their structure, lifecycle-hook order and commented-out blocks.
+- Templates: no loop index as `v-for` key, no `v-text`, move complex conditions into `computed`. Declare every emitted
+  event in `emits`; remove event listeners in `unmounted`.
+- State management: Pinia, never Vuex.
+- Styles: no hard-coded colors — reuse the existing color variables (add a new `kebab-case` variable if needed).
+
+valantic developers find the full guidelines in the internal ai-cornerstone repository (`guidelines/frontend/`, skills
+`frontend-best-practices` and `vue-best-practices`).
+
+## Working rules
+
+These rules are identical in every valantic shared-frontend repo.
+
+- Git: never commit unless explicitly asked. Never push unless explicitly asked in that request. Never pull or
+  create/switch branches (`git pull`, `git checkout`, `git switch`, `git branch`, …). Branch names are
+  `feature/<name>` or `bugfix/<name>`.
+- Never run a release script or `npm publish` unless explicitly asked.
+- Never install, update or remove npm packages without approval. Never edit generated or vendored files
+  (`node_modules/`, `dist/`, lock files by hand).
+- Priorities: correctness, simplicity, consistency with the existing code, maintainability, minimal changes. Prefer the
+  smallest correct change.
+- Understand the existing code and search for existing implementations before adding new ones; reuse over new
+  abstractions. Do not refactor unrelated code, change public APIs, or change behavior outside the task's scope.
+- Before finishing, run `npm test` and fix failures caused by the change. Every change gets a changelog entry and,
+  where a feature changes, a doc update (see Changelog and Documentation below).
+- If a requirement is unclear, ask. If only an implementation detail is unclear, follow the existing patterns in this
+  repo.
 
 ## Changelog (required for every task)
 
