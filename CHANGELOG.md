@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- [docs] Added a `docs/` folder with one feature doc per element/plugin/composition/directive (`e-icon`,
+  `viewport`, `vue-bem-cn`, `form-states`, `uuid`, `outside-click`) and an index at `docs/README.md` covering
+  how consumers import from the package's subpath exports.
 - [ci] Aligned `.github/workflows/test.yml` with the other shared-frontend repos: job `test`, step "Run tests"
   (the old label claimed checks that don't run here), Node version read from `.nvmrc`, token limited to
   `contents: read`.
