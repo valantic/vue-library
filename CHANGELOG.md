@@ -11,6 +11,8 @@
 - [ci] Added the shared `Security Scan` workflow (`.github/workflows/security.yml`, Trivy): scans the dependencies
   daily and on pull requests, opens/updates a `security` issue on CRITICAL/HIGH findings, closes it when clean, and
   uploads the results to the GitHub Security tab.
+- [ci] `security.yml` now posts (and keeps updated) a pull request comment with the vulnerability breakdown when the
+  Trivy scan fails a PR check, instead of only failing the job with no feedback beyond the raw log.
 - [chore] Made `.prettierrc.json5` identical to the other shared-frontend repos (added the `^@!production/(.*)$`
   import-order group, which has no effect here since this repo has no such alias).
 - [chore] Harmonized the copyright line in `LICENSE` to `2017-present, valantic CEC Schweiz AG`, matching the README.
