@@ -13,6 +13,9 @@
   uploads the results to the GitHub Security tab.
 - [ci] `security.yml` now posts (and keeps updated) a pull request comment with the vulnerability breakdown when the
   Trivy scan fails a PR check, instead of only failing the job with no feedback beyond the raw log.
+- [fix] `security.yml`: steps gated on `steps.trivy-sarif.outcome` now also require `always()`. Without it,
+  GitHub Actions implicitly ANDs a bare `if:` with `success()`, so those steps were skipped exactly when the
+  Trivy step failed — the case they exist to handle.
 - [chore] Made `.prettierrc.json5` identical to the other shared-frontend repos (added the `^@!production/(.*)$`
   import-order group, which has no effect here since this repo has no such alias).
 - [chore] Harmonized the copyright line in `LICENSE` to `2017-present, valantic CEC Schweiz AG`, matching the README.
