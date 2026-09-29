@@ -2,6 +2,11 @@
 
 ## unreleased
 
+- [fix] `.editorconfig`: removed a stray space in the `[{*.js, *.ts}]` glob (`[{*.js,*.ts}]`) that prevented it from
+  matching `*.ts` files.
+- [fix] `generate-vuln-report.py`: `worst_severity()` no longer raises `ValueError` and aborts the report step when
+  every vulnerability for a package has a severity outside `SEVERITIES` — it now falls back to the lowest rank.
+
 - [docs] Added a `docs/` folder with one feature doc per element/plugin/composition/directive (`e-icon`,
   `viewport`, `vue-bem-cn`, `form-states`, `uuid`, `outside-click`) and an index at `docs/README.md` covering
   how consumers import from the package's subpath exports.
