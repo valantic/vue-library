@@ -20,6 +20,12 @@ if (import.meta.env.DEV) {
 
 const app = createApp(vueOptions);
 
+if (import.meta.env.DEV) {
+  const { vasXRayInspector } = await import('@valantic/vue-styleguide');
+
+  app.use(vasXRayInspector);
+}
+
 vuePlugins.forEach(({ plugin, options: pluginOptions }) => app.use(plugin, pluginOptions));
 
 app.mount('#app');
