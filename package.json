@@ -3,7 +3,7 @@
   "description": "A bunch of useful vue components and plugins.",
   "author": "valantic CEC",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "lastDependencyUpdate": "10.03.2026",
   "type": "module",
   "engines": {

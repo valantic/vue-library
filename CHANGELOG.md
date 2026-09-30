@@ -2,6 +2,8 @@
 
 ## unreleased
 
+## v0.0.2
+
 - [fix] `README.md`: the banner image used a repo-root-relative path (`.github/assets/banner.jpeg`) that only
   resolves correctly on GitHub. Rendered locally via the styleguide's readme route (`/sg/sg-test-page-readme`),
   the browser resolved it relative to that nested URL instead, so it 404'd (served the SPA fallback `index.html`).
