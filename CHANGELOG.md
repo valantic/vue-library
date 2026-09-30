@@ -2,6 +2,8 @@
 
 ## unreleased
 
+## v0.0.3
+
 - [fix] version
 
 ## v0.0.2
