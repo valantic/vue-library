@@ -1,6 +1,6 @@
 <div align="center">
 
-![valantic vue-library banner](.github/assets/banner.jpeg)
+![valantic vue-library banner](/.github/assets/banner.jpeg)
 
 # valantic - vue library
 

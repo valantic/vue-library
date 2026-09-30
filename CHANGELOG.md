@@ -2,6 +2,16 @@
 
 ## unreleased
 
+- [fix] `README.md`: the banner image used a repo-root-relative path (`.github/assets/banner.jpeg`) that only
+  resolves correctly on GitHub. Rendered locally via the styleguide's readme route (`/sg/sg-test-page-readme`),
+  the browser resolved it relative to that nested URL instead, so it 404'd (served the SPA fallback `index.html`).
+  Changed to a leading-slash path (`/.github/assets/banner.jpeg`), which GitHub still resolves relative to the
+  repo root and which the dev server resolves from the site root regardless of the current route.
+- [fix] `src/styleguide/styleguide.vue`: updated for `@valantic/vue-styleguide@2.2.1` — `c-vas-sidebar` no longer
+  accepts a `config` prop and manages its own settings (theme, font size, x-ray mode) internally, and the
+  `StyleguideConfiguration` type was removed from the package. Dropped the now-unsupported `config` prop, the
+  `StyleguideConfiguration` import, and the dead demo scaffolding (`languages`, `isLoggedIn`, `theme-01`/`theme-02`)
+  that had no effect elsewhere in the repo.
 - [chore] `scripts/release.mjs`: dropped the temporary `master` fallback from `RELEASE_BRANCHES` now that
   `stylelint-config-valantic` has moved its default branch to `main`.
 - [fix] `.editorconfig`: removed a stray space in the `[{*.js, *.ts}]` glob (`[{*.js,*.ts}]`) that prevented it from
