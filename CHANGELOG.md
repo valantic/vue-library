@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- [build] `npm run release` now asks which release type (patch, minor, major) to make; `release:patch` added as the
+  non-interactive variant.
+
 - [fix] version
 
 ## v0.0.3
